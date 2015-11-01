@@ -1,0 +1,43 @@
+awk -F, 'BEGIN {OFS=","} { array[NR]=$1;unsorted[NR]=$1 } END { for(x=1;x<=NF;x++){array[++y]=$x;unsorted[++t]=$x}}END{c=asort(array); min=array[1]; max=array[c]; printf("min: %f\n", min)
+;printf("max: %f\n", max);for(x=1;x<=NR;x++)printf("%f\n", unsorted[x]) }' test.txt
+
+
+
+awk -F "\"*,\"*" 'BEGIN {OFS=","} {array[NR]=$1;array2[NR]=$1} END{ c=asort(array2); min=array2[1]; max=array2[c]; for(x=1;x<=NR;x++)printf("%f\n", (array[x]-min)/(max-min)) }' ulc.csv > 
+normalised_field1.txt
+
+
+
+
+paste normalised_field1.txt normalised_field2.txt normalised_field3.txt normalised_field4.txt normalised_field5.txt normalised_field6.txt normalised_field7.txt normalised_field8.txt norma
+lised_field9.txt normalised_field10.txt normalised_field11.txt normalised_field12.txt normalised_field13.txt normalised_field14.txt normalised_field15.txt normalised_field16.txt normalise
+d_field17.txt normalised_field18.txt normalised_field19.txt normalised_field20.txt normalised_field21.txt normalised_field22.txt normalised_field23.txt normalised_field24.txt normalised_f
+ield25.txt normalised_field26.txt normalised_field27.txt normalised_field28.txt normalised_field29.txt normalised_field30.txt normalised_field31.txt normalised_field32.txt normalised_fiel
+d33.txt normalised_field34.txt normalised_field35.txt normalised_field36.txt normalised_field37.txt normalised_field38.txt normalised_field39.txt normalised_field40.txt target_field.txt |
+ column -s $'\t' -t > combined_normalised.txt
+
+paste minmaxed_field1.txt minmaxed_field2.txt minmaxed_field3.txt minmaxed_field4.txt minmaxed_field5.txt minmaxed_field6.txt minmaxed_field7.txt minmaxed_field8.txt minmaxed_field9.txt m
+inmaxed_field10.txt minmaxed_field11.txt minmaxed_field12.txt minmaxed_field13.txt minmaxed_field14.txt minmaxed_field15.txt minmaxed_field16.txt minmaxed_field17.txt minmaxed_field18.txt
+ minmaxed_field19.txt minmaxed_field20.txt minmaxed_field21.txt minmaxed_field22.txt minmaxed_field23.txt minmaxed_field24.txt minmaxed_field25.txt minmaxed_field26.txt minmaxed_field27.t
+xt minmaxed_field28.txt minmaxed_field29.txt minmaxed_field30.txt minmaxed_field31.txt minmaxed_field32.txt minmaxed_field33.txt minmaxed_field34.txt minmaxed_field35.txt minmaxed_field36
+.txt minmaxed_field37.txt minmaxed_field38.txt minmaxed_field39.txt minmaxed_field40.txt minmaxed_field41.txt minmaxed_field42.txt minmaxed_field43.txt minmaxed_field44.txt minmaxed_field
+45.txt minmaxed_field46.txt minmaxed_field47.txt minmaxed_field48.txt minmaxed_field49.txt minmaxed_field50.txt minmaxed_field51.txt minmaxed_field52.txt minmaxed_field53.txt minmaxed_fie
+ld54.txt minmaxed_field55.txt minmaxed_field56.txt target_field.txt | column -s $'\t' -t > combined_minimized_full.txt
+
+
+paste normalised_field2.txt normalised_field3.txt normalised_field5.txt target_field.txt | column -s $'\t' -t > ulc-highest-variation_mm.txt
+
+
+
+BEGIN {OFS=","} {array[NR]=$my_var;array2[NR]=$my_var} END{ c=asort(array2); min=array2[1]; max=array2[c]; for(x=1;x<=NR;x++)printf("%f\n", (array[x]-min)/(max-min)) } 
+
+
+
+extract only 0's from field..
+awk -F "\"*,\"*" 'BEGIN {OFS=","} {array[NR]=$9;array2[NR]=$15} END{ for(x=1;x<=NR;x++)if(array2[x]==0){printf("%f\n", array[x])} }' combined.txt > field9-0.txt
+awk -F "\"*,\"*" 'BEGIN {OFS=","} {array[NR]=$9;array2[NR]=$15} END{ for(x=1;x<=NR;x++)if(array2[x]==1){printf("%f\n", array[x])} }' combined.txt > field9-0.txt
+
+---------------
+
+
+awk -F ',' -v OFS=',' '$1 { if ($1=="trees") $1="0"; print}' ulc.csv
